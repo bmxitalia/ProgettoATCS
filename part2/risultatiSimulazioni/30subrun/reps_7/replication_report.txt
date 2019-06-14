@@ -1,0 +1,214 @@
+CPN Tools report for simulation replications
+Net: /cygdrive/C/Users/tomma/Desktop/slideUNIPD/advanced/progetto/ID1211016-part1/reteCPN/ID1211016-part1.cpn
+Output directory: /cygdrive/C/Users/tomma/Desktop/slideUNIPD/advanced/progetto/ID1211016-part1/reteCPN/output/reps_7
+
+Simulation no.: 1
+Steps.........: 3922
+Model time....: 377.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 2
+Steps.........: 4048
+Model time....: 402.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 3
+Steps.........: 4002
+Model time....: 452.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 4
+Steps.........: 4190
+Model time....: 545.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 5
+Steps.........: 4027
+Model time....: 585.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 6
+Steps.........: 3936
+Model time....: 447.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 7
+Steps.........: 3986
+Model time....: 484.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 8
+Steps.........: 3912
+Model time....: 496.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 9
+Steps.........: 4125
+Model time....: 432.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 10
+Steps.........: 4047
+Model time....: 582.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 11
+Steps.........: 3986
+Model time....: 556.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 12
+Steps.........: 3977
+Model time....: 465.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 13
+Steps.........: 3966
+Model time....: 436.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 14
+Steps.........: 3969
+Model time....: 465.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 15
+Steps.........: 3905
+Model time....: 392.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 16
+Steps.........: 4013
+Model time....: 463.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 17
+Steps.........: 4068
+Model time....: 601.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 18
+Steps.........: 4141
+Model time....: 506.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 19
+Steps.........: 3961
+Model time....: 422.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 20
+Steps.........: 4058
+Model time....: 439.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 21
+Steps.........: 4127
+Model time....: 442.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 22
+Steps.........: 4104
+Model time....: 578.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 23
+Steps.........: 4044
+Model time....: 484.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 24
+Steps.........: 3920
+Model time....: 450.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 1 seconds
+
+
+Simulation no.: 25
+Steps.........: 4054
+Model time....: 466.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 26
+Steps.........: 4219
+Model time....: 548.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 27
+Steps.........: 4047
+Model time....: 584.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 28
+Steps.........: 3996
+Model time....: 443.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 29
+Steps.........: 4057
+Model time....: 418.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+
+Simulation no.: 30
+Steps.........: 4045
+Model time....: 506.0
+Stop reason...: No more enabled transitions!
+Time to run simulation: 2 seconds
+
+

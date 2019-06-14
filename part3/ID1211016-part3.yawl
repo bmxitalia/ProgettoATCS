@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<specificationSet xmlns="http://www.yawlfoundation.org/yawlschema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="4.0" xsi:schemaLocation="http://www.yawlfoundation.org/yawlschema http://www.yawlfoundation.org/yawlschema/YAWL_Schema4.0.xsd">
+  <specification uri="progetto">
+    <documentation>No description provided</documentation>
+    <metaData>
+      <creator>tomma</creator>
+      <description>No description provided</description>
+      <coverage>4.2.759</coverage>
+      <version>0.14</version>
+      <persistent>false</persistent>
+      <identifier>UID_b06db69d-a569-439c-821b-ed4b96e507c1</identifier>
+    </metaData>
+    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" />
+    <decomposition id="Net" isRootNet="true" xsi:type="NetFactsType">
+      <localVariable>
+        <index>0</index>
+        <name>ArticleNumber</name>
+        <type>integer</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>0</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>1</index>
+        <name>OffenderName</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>2</index>
+        <name>OffenderAddress</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue />
+      </localVariable>
+      <localVariable>
+        <index>3</index>
+        <name>Amount</name>
+        <type>double</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>0</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>4</index>
+        <name>Payment</name>
+        <type>double</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>0</initialValue>
+      </localVariable>
+      <localVariable>
+        <index>5</index>
+        <name>AmountPaid</name>
+        <type>double</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <initialValue>0</initialValue>
+      </localVariable>
+      <processControlElements>
+        <inputCondition id="InputCondition">
+          <flowsInto>
+            <nextElementRef id="Insert_Ticket" />
+          </flowsInto>
+        </inputCondition>
+        <task id="Insert_Ticket">
+          <name>Insert Ticket</name>
+          <flowsInto>
+            <nextElementRef id="C" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;OffenderAddress&gt;{/Insert_Ticket/OffenderAddress/text()}&lt;/OffenderAddress&gt;" />
+              <mapsTo>OffenderAddress</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;ArticleNumber&gt;{/Insert_Ticket/ArticleNumber/text()}&lt;/ArticleNumber&gt;" />
+              <mapsTo>ArticleNumber</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;OffenderName&gt;{/Insert_Ticket/OffenderName/text()}&lt;/OffenderName&gt;" />
+              <mapsTo>OffenderName</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Amount&gt;{/Insert_Ticket/Amount/text()}&lt;/Amount&gt;" />
+              <mapsTo>Amount</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <role>RO-68020bec-152b-4fec-ad80-c03c59d1f117</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Insert_Ticket" />
+        </task>
+        <condition id="C">
+          <flowsInto>
+            <nextElementRef id="Prepare_and_Send_Ticket" />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="_10_Days_Timer" />
+          </flowsInto>
+        </condition>
+        <task id="Prepare_and_Send_Ticket">
+          <name>Prepare and Send Ticket</name>
+          <flowsInto>
+            <nextElementRef id="Process_Payment" />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="_180_Days_Timer" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;OffenderAddress&gt;{/Net/OffenderAddress/text()}&lt;/OffenderAddress&gt;" />
+              <mapsTo>OffenderAddress</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;OffenderName&gt;{/Net/OffenderName/text()}&lt;/OffenderName&gt;" />
+              <mapsTo>OffenderName</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;ArticleNumber&gt;{/Net/ArticleNumber/text()}&lt;/ArticleNumber&gt;" />
+              <mapsTo>ArticleNumber</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;Amount&gt;{/Net/Amount/text()}&lt;/Amount&gt;" />
+              <mapsTo>Amount</mapsTo>
+            </mapping>
+          </startingMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <role>RO-b460a66f-85e5-4eb8-8531-12e5d397d85a</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Prepare_and_Send_Ticket" />
+        </task>
+        <task id="_10_Days_Timer">
+          <name>10 Days Timer</name>
+          <flowsInto>
+            <nextElementRef id="Archive_the_Ticket_as_Expired" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <timer>
+            <trigger>OnEnabled</trigger>
+            <duration>P10D</duration>
+          </timer>
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="_10_Days_Timer" />
+        </task>
+        <task id="Archive_the_Ticket_as_Expired">
+          <name>Archive the Ticket as Expired</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+        </task>
+        <task id="Process_Payment">
+          <name>Process Payment</name>
+          <flowsInto>
+            <nextElementRef id="Automatic_Payment_Processing" />
+            <isDefaultFlow />
+          </flowsInto>
+          <join code="xor" />
+          <split code="xor" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;OffenderName&gt;{/Net/OffenderName/text()}&lt;/OffenderName&gt;" />
+              <mapsTo>OffenderName</mapsTo>
+            </mapping>
+            <mapping>
+              <expression query="&lt;OffenderAddress&gt;{/Net/OffenderAddress/text()}&lt;/OffenderAddress&gt;" />
+              <mapsTo>OffenderAddress</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;Payment&gt;{/Process_Payment/Payment/text()}&lt;/Payment&gt;" />
+              <mapsTo>Payment</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="system">
+              <distributionSet>
+                <initialSet>
+                  <role>RO-47dff769-e076-4e7e-b706-164741005b81</role>
+                </initialSet>
+              </distributionSet>
+            </offer>
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Process_Payment" />
+        </task>
+        <task id="_180_Days_Timer">
+          <name>180 Days Timer</name>
+          <flowsInto>
+            <nextElementRef id="Add_Ticket_for_Credit_Collection" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <timer>
+            <trigger>OnEnabled</trigger>
+            <duration>P6M</duration>
+          </timer>
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="_180_Days_Timer" />
+        </task>
+        <task id="Add_Ticket_for_Credit_Collection">
+          <name>Add Ticket for Credit Collection</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <removesTokens id="Automatic_Payment_Processing" />
+          <removesTokens id="Process_Payment" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+        </task>
+        <task id="Automatic_Payment_Processing">
+          <name>Automatic Payment Processing</name>
+          <flowsInto>
+            <nextElementRef id="Close_and_Archive_Ticket" />
+            <isDefaultFlow />
+          </flowsInto>
+          <flowsInto>
+            <nextElementRef id="Process_Payment" />
+            <predicate ordering="0">number(/Net/AmountPaid/text()) &lt; number(/Net/Amount/text())</predicate>
+          </flowsInto>
+          <join code="xor" />
+          <split code="xor" />
+          <startingMappings>
+            <mapping>
+              <expression query="&lt;query&gt;{number(/Net/AmountPaid/text()) + number(/Net/Payment/text())}&lt;/query&gt;" />
+              <mapsTo>query</mapsTo>
+            </mapping>
+          </startingMappings>
+          <completedMappings>
+            <mapping>
+              <expression query="&lt;AmountPaid&gt;{/Automatic_Payment_Processing/result/text()}&lt;/AmountPaid&gt;" />
+              <mapsTo>AmountPaid</mapsTo>
+            </mapping>
+          </completedMappings>
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+          <decomposesTo id="Automatic_Payment_Processing" />
+        </task>
+        <task id="Close_and_Archive_Ticket">
+          <name>Close and Archive Ticket</name>
+          <flowsInto>
+            <nextElementRef id="OutputCondition" />
+          </flowsInto>
+          <join code="xor" />
+          <split code="and" />
+          <removesTokens id="_180_Days_Timer" />
+          <resourcing>
+            <offer initiator="user" />
+            <allocate initiator="user" />
+            <start initiator="user" />
+          </resourcing>
+        </task>
+        <outputCondition id="OutputCondition" />
+      </processControlElements>
+    </decomposition>
+    <decomposition id="Automatic_Payment_Processing" xsi:type="WebServiceGatewayFactsType">
+      <name>Automatic Payment Processing</name>
+      <inputParam>
+        <index>0</index>
+        <name>query</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>0</index>
+        <name>result</name>
+        <type>double</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </outputParam>
+      <codelet>org.yawlfoundation.yawl.resourcing.codelets.XQueryEvaluator</codelet>
+      <externalInteraction>automated</externalInteraction>
+    </decomposition>
+    <decomposition id="Insert_Ticket" xsi:type="WebServiceGatewayFactsType">
+      <name>Insert Ticket</name>
+      <outputParam>
+        <index>0</index>
+        <name>ArticleNumber</name>
+        <type>integer</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </outputParam>
+      <outputParam>
+        <index>1</index>
+        <name>OffenderName</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </outputParam>
+      <outputParam>
+        <index>2</index>
+        <name>OffenderAddress</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </outputParam>
+      <outputParam>
+        <index>3</index>
+        <name>Amount</name>
+        <type>double</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Prepare_and_Send_Ticket" xsi:type="WebServiceGatewayFactsType">
+      <name>Prepare and Send Ticket</name>
+      <inputParam>
+        <index>0</index>
+        <name>ArticleNumber</name>
+        <type>integer</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>OffenderName</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>2</index>
+        <name>OffenderAddress</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>3</index>
+        <name>Amount</name>
+        <type>double</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="Process_Payment" xsi:type="WebServiceGatewayFactsType">
+      <name>Process Payment</name>
+      <inputParam>
+        <index>0</index>
+        <name>OffenderName</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <inputParam>
+        <index>1</index>
+        <name>OffenderAddress</name>
+        <type>string</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+      </inputParam>
+      <outputParam>
+        <index>2</index>
+        <name>Payment</name>
+        <type>double</type>
+        <namespace>http://www.w3.org/2001/XMLSchema</namespace>
+        <defaultValue />
+      </outputParam>
+      <externalInteraction>manual</externalInteraction>
+    </decomposition>
+    <decomposition id="_10_Days_Timer" xsi:type="WebServiceGatewayFactsType">
+      <name>10 Days Timer</name>
+      <externalInteraction>automated</externalInteraction>
+    </decomposition>
+    <decomposition id="_180_Days_Timer" xsi:type="WebServiceGatewayFactsType">
+      <name>180 Days Timer</name>
+      <externalInteraction>automated</externalInteraction>
+    </decomposition>
+  </specification>
+  <layout>
+    <locale language="it" country="IT"/>
+    <specification id="progetto">
+      <size w="58" h="28"/>
+      <net id="Net">
+        <bounds x="0" y="0" w="1045" h="531"/>
+        <frame x="0" y="0" w="1048" h="534"/>
+        <viewport x="0" y="0" w="1048" h="534"/>
+        <vertex id="C">
+          <attributes>
+            <bounds x="296" y="256" w="32" h="32"/>
+            <backgroundColor>-26215</backgroundColor>
+          </attributes>
+        </vertex>
+        <vertex id="OutputCondition">
+          <attributes>
+            <bounds x="972" y="256" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <vertex id="InputCondition">
+          <attributes>
+            <bounds x="36" y="256" w="32" h="32"/>
+          </attributes>
+        </vertex>
+        <container id="Close_and_Archive_Ticket">
+          <vertex>
+            <attributes>
+              <bounds x="812" y="256" w="32" h="32"/>
+              <backgroundColor>-6710785</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="780" y="288" w="97" h="41"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Archive_the_Ticket_as_Expired">
+          <vertex>
+            <attributes>
+              <bounds x="720" y="396" w="32" h="32"/>
+              <backgroundColor>-26215</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="688" y="428" w="97" h="61"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Process_Payment">
+          <vertex>
+            <attributes>
+              <bounds x="548" y="256" w="32" h="32"/>
+              <backgroundColor>-6710785</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="512" y="288" w="96" h="40"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_join">
+            <position>12</position>
+            <attributes>
+              <bounds x="538" y="256" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Insert_Ticket">
+          <vertex>
+            <attributes>
+              <bounds x="172" y="256" w="32" h="32"/>
+              <backgroundColor>-256</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="140" y="288" w="97" h="21"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Prepare_and_Send_Ticket">
+          <vertex>
+            <attributes>
+              <bounds x="384" y="256" w="32" h="32"/>
+              <backgroundColor>-16711936</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="356" y="288" w="97" h="41"/>
+            </attributes>
+          </label>
+          <decorator type="AND_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="415" y="256" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <container id="Add_Ticket_for_Credit_Collection">
+          <vertex>
+            <attributes>
+              <bounds x="836" y="96" w="32" h="32"/>
+              <backgroundColor>-16724788</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="804" y="128" w="97" h="61"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="_10_Days_Timer">
+          <vertex>
+            <attributes>
+              <bounds x="404" y="396" w="32" h="32"/>
+              <backgroundColor>-26215</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="372" y="428" w="97" h="21"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="_180_Days_Timer">
+          <vertex>
+            <attributes>
+              <bounds x="628" y="96" w="32" h="32"/>
+              <backgroundColor>-16724788</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="596" y="128" w="97" h="40"/>
+            </attributes>
+          </label>
+        </container>
+        <container id="Automatic_Payment_Processing">
+          <vertex>
+            <attributes>
+              <bounds x="672" y="256" w="32" h="32"/>
+              <backgroundColor>-6710785</backgroundColor>
+            </attributes>
+          </vertex>
+          <label>
+            <attributes>
+              <bounds x="644" y="288" w="97" h="61"/>
+            </attributes>
+          </label>
+          <decorator type="XOR_split">
+            <position>13</position>
+            <attributes>
+              <bounds x="703" y="256" w="11" h="32"/>
+            </attributes>
+          </decorator>
+        </container>
+        <flow source="Prepare_and_Send_Ticket" target="Process_Payment">
+          <ports in="2" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="InputCondition" target="Insert_Ticket">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="_180_Days_Timer" target="Add_Ticket_for_Credit_Collection">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Automatic_Payment_Processing" target="Process_Payment">
+          <ports in="2" out="2"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="713" y="271,5"/>
+              <value x="620" y="188"/>
+              <value x="538" y="271,5"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Close_and_Archive_Ticket" target="OutputCondition">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="839" y="263,5"/>
+              <value x="972" y="267,5"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Add_Ticket_for_Credit_Collection" target="OutputCondition">
+          <ports in="13" out="10"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="867" y="111,5"/>
+              <value x="988" y="112"/>
+              <value x="987,5" y="252"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="C" target="Prepare_and_Send_Ticket">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Automatic_Payment_Processing" target="Close_and_Archive_Ticket">
+          <ports in="2" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="713" y="271,5"/>
+              <value x="808" y="267,5"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Insert_Ticket" target="C">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="_10_Days_Timer" target="Archive_the_Ticket_as_Expired">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="Process_Payment" target="Automatic_Payment_Processing">
+          <ports in="13" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+          </attributes>
+        </flow>
+        <flow source="C" target="_10_Days_Timer">
+          <ports in="11" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="311,5" y="287"/>
+              <value x="312" y="412"/>
+              <value x="404" y="411,5"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Archive_the_Ticket_as_Expired" target="OutputCondition">
+          <ports in="13" out="11"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="747" y="411,5"/>
+              <value x="988" y="412"/>
+              <value x="987,5" y="287"/>
+            </points>
+          </attributes>
+        </flow>
+        <flow source="Prepare_and_Send_Ticket" target="_180_Days_Timer">
+          <ports in="2" out="12"/>
+          <attributes>
+            <lineStyle>11</lineStyle>
+            <points>
+              <value x="425" y="271,5"/>
+              <value x="532" y="187"/>
+              <value x="628" y="111,5"/>
+            </points>
+          </attributes>
+        </flow>
+      </net>
+    </specification>
+  </layout>
+</specificationSet>

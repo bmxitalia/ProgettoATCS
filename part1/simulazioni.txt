@@ -1,0 +1,15 @@
+Notare che è importante sia quanto perdo che l'intervallo di confidenza -> più aumento gli impiegati e più aumenta l'accurattezza dei dati osservati
+15 impiegati -> in media perdo 165 euro perché scadono i ticket -> 20% ticket scaduti 
+16 impiegati -> in media perdo 156 euro perché scadono i ticket -> + 400*30 per il nuovo impiegato -> 19% scaduti
+17 impiegati -> in media perdo 166 euro perché scadono i ticket -> + 800*30 per due nuovi impiegati -> 16.5% scaduti
+18 impiegati -> in media perdo 158 euro perché scadono i ticket -> + 1200*30 per tre nuovi impiegati -> 14.5% scaduti -> intervalli di confidenza aumentati -> male
+19 impiegati -> in media perdo 166 euro perché scadono i ticket -> 1600*30 per quattro nuovi impiegati -> 13% scaduti -> intervalli aumentano
+20 impiegati -> in media perdo 166 euro -> 2000*30 per 5 nuovi impiegati -> 11.5% scaduti
+21 impiegati -> in media perdo 157 euro -> 2400*30 per 6 nuovi impiegati -> 9.5% scaduti -> confidenza si abbassa
+22 impiegati -> in media perdo 165 euro -> 2800*30 per 7 nuovi impiegati -> 9% scaduti
+23 impiegati -> in media perdo 161 euro -> 3200*30 per 8 nuovi impiegati -> poco meno di 9% scaduti -> intervalli esplosi di nuobo
+24 impiegati -> in media perdo 176 euro -> 3600*30 per 9 nuovi impiegati -> 8% scaduti -> intervalli esplosi
+
+Vogliamo intervalli di confidenza il più bassi possibile -> proviamo ad aumentare il numero di simulazioni e vediamo cosa accade
+24 impiegati -> in media perdo 161 euro -> 3600*30 per 9 nuovi impiegati -> 8% scaduti -> bassi
+16 impiegati -> in media 160 euro persi -> 18.5% scaduti
